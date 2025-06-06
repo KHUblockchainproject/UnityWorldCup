@@ -44,7 +44,7 @@ public class WorldCupView : MonoBehaviour
             selectedImage[i] = i;
         }
 
-        ShuffleList(ref selectedImage);
+        ShuffleList(ref selectedImage, selectedImage.Count);
 
         size = 16;
 
@@ -149,6 +149,7 @@ public class WorldCupView : MonoBehaviour
                 currentImage = 0;
                 select = 0;
                 size = size / 2;
+                ShuffleList(ref selectedImage, size);
             }
         }
         
@@ -177,15 +178,15 @@ public class WorldCupView : MonoBehaviour
         }
     }
 
-    public void ShuffleList(ref List<int> list)
+    public void ShuffleList(ref List<int> list, int size)
     {
         int random1, random2;
         int temp;
 
-        for (int i = 0; i < list.Count; i++)
+        for (int i = 0; i < size; i++)
         {
-            random1 = UnityEngine.Random.Range(0, list.Count);
-            random2 = UnityEngine.Random.Range(0, list.Count);
+            random1 = UnityEngine.Random.Range(0, size);
+            random2 = UnityEngine.Random.Range(0, size);
 
             temp = list[random1];
             list[random1] = list[random2];
