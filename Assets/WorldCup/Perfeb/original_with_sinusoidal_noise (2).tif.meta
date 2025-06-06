@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      original_with_sinusoidal_noise (2)_0: -4337424925581698367
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
