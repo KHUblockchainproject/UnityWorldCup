@@ -778,9 +778,25 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3149733605876286302, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149733605876286302, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3897840775089783013, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919439000769781322, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919439000769781322, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4243006386529672605, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
       propertyPath: m_Size
@@ -865,6 +881,34 @@ PrefabInstance:
     - target: {fileID: 4678837741773916679, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929433678218352158, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929433678218352158, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929433678218352158, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929433678218352158, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043177929088838400, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043177929088838400, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3896394608559251243, guid: 2845a995770f14545a9aba283d46a303, type: 3}
+    - target: {fileID: 7043177929088838400, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7321228772618652473, guid: 44c5854f98f4bfc41a10c30c4e5a19db, type: 3}
       propertyPath: m_AnchoredPosition.x
