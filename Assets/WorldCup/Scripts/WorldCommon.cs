@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public struct WorldCupTitle
@@ -6,12 +7,46 @@ public struct WorldCupTitle
     Tournaments tournaments;
 }
 
-public struct Tournaments
+[System.Serializable]
+public class Tournaments
 {
     int tournament_id;
     string tournament_title;
     string description;
     string thumbnail;
+}
+
+[System.Serializable]
+public class Candidates
+{
+    string name;
+    string image_url;
+}
+
+[System.Serializable]
+public class Tournament
+{
+    int tournament_id;
+    string tournament_title;
+    string description;
+    string wallet_address;
+    string thumbnail;
+    Candidates[] candidates;
+}
+
+[System.Serializable]
+public class Vote
+{
+    int tournament_id;
+    string wallet_address;
+    int selected_candidate_id;
+}
+
+[System.Serializable]
+public class Check_Vote
+{
+    string wallet_address;
+    int tournament_id;
 }
 
 public struct WorldCupData

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -20,9 +21,26 @@ public class WebRequest : MonoBehaviour
             return myTexture;
         }
     }
-    
-    public void GetRequest(string url)
-    {
 
+    public IEnumerator GetRequest(string url)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        {
+            
+            yield return webRequest.SendWebRequest();
+
+            if((webRequest.result == UnityWebRequest.Result.ConnectionError) || (webRequest.result == UnityWebRequest.Result.ProtocolError))
+            {
+                Debug.LogError(webRequest.error);
+            }
+            else
+            {
+
+            }
+        }
     }
+
+
 }
+
+

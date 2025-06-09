@@ -1,16 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoToWorldCup : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    int id;
 
-    // Update is called once per frame
-    void Update()
+    public void LetsGoPlayWorldCup()
     {
-        
+        // currentWorldcup 에 데이터 넣어주기
+
+        SceneManager.LoadScene("WorldCup");
     }
 }
