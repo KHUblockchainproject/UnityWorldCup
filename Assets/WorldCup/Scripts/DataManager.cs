@@ -8,7 +8,7 @@ public class DataManager : MonoBehaviour
     public System.Collections.Generic.List<WorldCupTitle> worldcuplist;
     public WorldCupData currentWorldcup;
 
-    private string CurrentUser;
+    public string walletAddress;
 
     public static DataManager Instance
     {
@@ -39,11 +39,6 @@ public class DataManager : MonoBehaviour
     public void TrnasferWorldCupInfo(int id)
     {
 
-    }
-
-    public void SetUser(string userid)
-    {
-        CurrentUser = userid;
     }
 
 }
