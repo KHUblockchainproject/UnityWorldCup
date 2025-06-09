@@ -2,9 +2,16 @@ using UnityEngine;
 
 public struct WorldCupTitle
 {
-    public Texture2D Trumbnail;
-    public string Title;
-    public int worldcupID;
+    public Texture2D TrumbnailImage;
+    Tournaments tournaments;
+}
+
+public struct Tournaments
+{
+    int tournament_id;
+    string tournament_title;
+    string description;
+    string thumbnail;
 }
 
 public struct WorldCupData
