@@ -1,19 +1,20 @@
 using NUnit.Framework;
 using UnityEngine;
 
+[System.Serializable]
 public struct WorldCupTitle
 {
     public Texture2D TrumbnailImage;
-    Tournaments tournaments;
+    public Tournaments tournaments;
 }
 
 [System.Serializable]
 public class Tournaments
 {
-    int tournament_id;
-    string tournament_title;
-    string description;
-    string thumbnail;
+    public int tournament_id;
+    public string tournament_title;
+    public string description;
+    public string thumbnail;
 }
 
 [System.Serializable]
@@ -49,6 +50,7 @@ public class Check_Vote
     int tournament_id;
 }
 
+[System.Serializable]
 public struct WorldCupData
 {
     public int WorldcupID;
@@ -59,6 +61,7 @@ public struct WorldCupData
     public string[] Describe;
 }
 
+[System.Serializable]
 public enum WorldCupSize
 {
     w64,

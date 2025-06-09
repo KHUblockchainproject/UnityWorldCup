@@ -29,9 +29,11 @@ public class WorldCupListDisplay : MonoBehaviour
 
         worldCupCount = 0;
 
-        for(int i = 0; i < number; i++)
+        number = DataManager.Instance.worldcuplist.Count;
+
+        for (int i = 0; i < number; i++)
         {
-            AddContent();
+            AddContent(i);
         }
     }
     public void ContentCorrection()
@@ -44,13 +46,30 @@ public class WorldCupListDisplay : MonoBehaviour
 
     }
 
-    public void AddContent()
+    public void AddContent(int i)
     {
+        WorldCupTitle title = DataManager.Instance.worldcuplist[i];
+
 
         int addSize = 1700;
         int addSize2 = 850;
 
         GameObject instance = Instantiate<GameObject>(WorldCupPrefeb, layoutRectTransform);
+
+        Texture2D tex = title.TrumbnailImage;
+
+        float width = tex.width;
+        float height = tex.height;
+
+        Rect rect = new Rect(0, 0, width, height);
+
+        Vector2 pivot = new Vector2(0.5f, 0.5f);
+        Sprite sprite = Sprite.Create(tex, rect, pivot);
+
+        instance.GetComponent<WorldCupTitleView>().tumbnail.sprite = sprite;
+        instance.GetComponent<WorldCupTitleView>().text.text = title.tournaments.tournament_title;
+
+
         worldList.Add(instance);
         worldCupCount++;
 

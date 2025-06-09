@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Drawing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +14,11 @@ public class WorldCupView : MonoBehaviour
     int currentImage;
     int select;
 
-    Text leftText;
-    Text rightText;
+    public TextMeshProUGUI leftText;
+    public TextMeshProUGUI rightText;
     
-    Button left;
-    Button right;
+    public Button left;
+    public Button right;
 
     GameObject SelectSizeUI;
 
@@ -37,12 +38,14 @@ public class WorldCupView : MonoBehaviour
         worldCupData.Size = WorldCupSize.w16;
 
         maxImagesSize = worldCupData.ImageCount;
-        selectedImage = new List<int>(maxImagesSize);
+        selectedImage = new List<int>();
 
         for(int i = 0;  i < maxImagesSize; i++)
         {
-            selectedImage[i] = i;
+            selectedImage.Add(i);
         }
+
+        Debug.Log(selectedImage.Count);
 
         ShuffleList(ref selectedImage, selectedImage.Count);
 
@@ -51,13 +54,19 @@ public class WorldCupView : MonoBehaviour
         currentImage = 0;
         select = 0;
 
+        GetNextImage();
+
     }
 
     public void ClickButton(bool button)
     {
 
+        // True == Left False == Right
+
         if (size == 1)
         {
+            Debug.Log("Final");
+
             if (button == true)
             {
                 finalId = leftId;
@@ -102,12 +111,17 @@ public class WorldCupView : MonoBehaviour
             DataManager dataManager = DataManager.Instance;
             WorldCupData worldCupData = dataManager.currentWorldcup;
 
-            int l = currentImage;
-            int r = currentImage + 1;
+            Debug.Log(currentImage);
+
+            leftId = selectedImage[currentImage];
+            rightId = selectedImage[currentImage + 1];
+
+            leftText.text = worldCupData.Describe[leftId];
+            rightText.text = worldCupData.Describe[rightId];
 
 
 
-            Texture2D tex = worldCupData.Images[l];
+            Texture2D tex = worldCupData.Images[leftId];
 
             if (tex != null)
             {
@@ -124,7 +138,7 @@ public class WorldCupView : MonoBehaviour
             }
 
 
-            tex = worldCupData.Images[r];
+            tex = worldCupData.Images[rightId];
 
             if (tex != null)
             {
@@ -136,7 +150,7 @@ public class WorldCupView : MonoBehaviour
                 Vector2 pivot = new Vector2(0.5f, 0.5f);
                 Sprite sprite = Sprite.Create(tex, rect, pivot);
 
-                left.image.sprite = sprite;
+                right.image.sprite = sprite;
 
             }
 
@@ -144,13 +158,14 @@ public class WorldCupView : MonoBehaviour
             currentImage += 2;
 
 
-            if (size - 1 == currentImage)
+            if (size == currentImage)
             {
                 currentImage = 0;
                 select = 0;
                 size = size / 2;
-                ShuffleList(ref selectedImage, size);
             }
+
+            Debug.Log(size);
         }
         
     }
