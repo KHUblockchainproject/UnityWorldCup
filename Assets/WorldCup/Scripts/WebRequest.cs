@@ -19,5 +19,10 @@ public class WebRequest : MonoBehaviour
             Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
             return myTexture;
         }
-    } 
+    }
+    
+    public void GetRequest(string url)
+    {
+
+    }
 }
