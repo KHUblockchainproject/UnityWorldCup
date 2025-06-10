@@ -3,6 +3,7 @@ using B83.Win32;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -126,6 +127,9 @@ public class DragAndDrop : MonoBehaviour
         {
             TextMeshProUGUI text = worldCupDes[i].GetComponent<AddWorldCupImage>().textMesh;
             Debug.Log(text.text);
+            Debug.Log(filesDropped[i]);
+
+            SceneManager.LoadScene("Select");
         }
     }
 }
