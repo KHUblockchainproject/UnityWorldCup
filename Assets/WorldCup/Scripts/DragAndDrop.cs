@@ -12,6 +12,8 @@ public class DragAndDrop : MonoBehaviour
     public List<GameObject> worldCupDes = new List<GameObject>();
     public GameObject AddWorldCup;
 
+    public TextMeshProUGUI titleText;
+
 
     // WorldCupAddDisplay
     [SerializeField]
@@ -123,6 +125,8 @@ public class DragAndDrop : MonoBehaviour
 
     public void SaveWorldCup()
     {
+        Debug.Log(titleText.text);
+
         for(int i = 0; i < worldCupCount; i++)
         {
             TextMeshProUGUI text = worldCupDes[i].GetComponent<AddWorldCupImage>().textMesh;
