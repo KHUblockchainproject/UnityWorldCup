@@ -139,6 +139,13 @@ public class WorldCupView : MonoBehaviour
     {
         if (true)
         {
+            if (size == currentImage)
+            {
+                currentImage = 0;
+                select = 0;
+                size = size / 2;
+            }
+
             Image img = right.GetComponent<Image>();
 
             DataManager dataManager = DataManager.Instance;
@@ -191,12 +198,7 @@ public class WorldCupView : MonoBehaviour
             currentImage += 2;
 
 
-            if (size == currentImage)
-            {
-                currentImage = 0;
-                select = 0;
-                size = size / 2;
-            }
+            
 
             Debug.Log(size);
         }
