@@ -129,7 +129,9 @@ public class DragAndDrop : MonoBehaviour
             Debug.Log(text.text);
             Debug.Log(filesDropped[i]);
 
-            SceneManager.LoadScene("Select");
+            
         }
+
+        SceneManager.LoadScene("Select");
     }
 }

@@ -12,7 +12,6 @@ public class LoginManager : MonoBehaviour
         if (DataManager.Instance.bIsWalletAddress == true)
         {
             LoginPannel.SetActive(false);
-            Debug.Log(DataManager.Instance.walletAddress);
         }
         
     }
