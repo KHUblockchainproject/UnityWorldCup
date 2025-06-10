@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
     public WorldCupData currentWorldcup;
 
     public string walletAddress = null;
+    public bool bIsWalletAddress = false;
 
     public static DataManager Instance
     {
