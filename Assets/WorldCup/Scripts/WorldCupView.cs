@@ -20,6 +20,11 @@ public class WorldCupView : MonoBehaviour
     public Button left;
     public Button right;
 
+
+    public GameObject FinalUI;
+    public Image FinalImage;
+    public TextMeshProUGUI FinalText;
+
     GameObject SelectSizeUI;
 
     int leftId;
@@ -31,6 +36,7 @@ public class WorldCupView : MonoBehaviour
 
     private void Start()
     {
+        FinalUI.SetActive(false);
 
         DataManager dataManager = DataManager.Instance;
 
@@ -58,6 +64,31 @@ public class WorldCupView : MonoBehaviour
 
     }
 
+    public void ShowFinalImage()
+    {
+        FinalUI.SetActive(true);
+        DataManager dataManager = DataManager.Instance;
+        WorldCupData worldCupData = dataManager.currentWorldcup;
+
+        Texture2D tex = worldCupData.Images[finalId];
+
+        FinalText.text = worldCupData.Describe[finalId];
+
+        if (tex != null)
+        {
+            float width = tex.width;
+            float height = tex.height;
+
+            Rect rect = new Rect(0, 0, width, height);
+
+            Vector2 pivot = new Vector2(0.5f, 0.5f);
+            Sprite sprite = Sprite.Create(tex, rect, pivot);
+
+            FinalImage.sprite = sprite;
+
+        }
+    }
+
     public void ClickButton(bool button)
     {
 
@@ -75,6 +106,8 @@ public class WorldCupView : MonoBehaviour
             {
                 finalId = rightId;
             }
+
+            ShowFinalImage();
         }
         else
         {

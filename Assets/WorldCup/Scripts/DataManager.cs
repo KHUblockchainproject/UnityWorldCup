@@ -8,7 +8,7 @@ public class DataManager : MonoBehaviour
     public System.Collections.Generic.List<WorldCupTitle> worldcuplist;
     public WorldCupData currentWorldcup;
 
-    public string walletAddress;
+    public string walletAddress = null;
 
     public static DataManager Instance
     {
