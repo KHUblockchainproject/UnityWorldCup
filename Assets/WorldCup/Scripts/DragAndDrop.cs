@@ -4,6 +4,9 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using System.Collections;
+using System.Net;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -24,18 +27,25 @@ public class DragAndDrop : MonoBehaviour
 
     int worldCupCount = 0;
 
+    GameObject wait;
+
     
 
 
     private void Awake()
     {
-        UnityDragAndDropHook.InstallHook(); //¸ðµâ ¼³Ä¡
-        UnityDragAndDropHook.OnDroppedFiles += OnDroppedFiles; //ÄÝ¹é ÇÔ¼ö µî·Ï
+        UnityDragAndDropHook.InstallHook(); //ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+        UnityDragAndDropHook.OnDroppedFiles += OnDroppedFiles; //ï¿½Ý¹ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½
+
+        if(wait != null)
+        {
+            wait.SetActive(false);
+        }
     }
 
     private void OnDestroy()
     {
-        UnityDragAndDropHook.UninstallHook(); //¸ðµâ Á¦°Å
+        UnityDragAndDropHook.UninstallHook(); //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private void Update()
@@ -46,7 +56,7 @@ public class DragAndDrop : MonoBehaviour
         }
     }
 
-    private void OnDroppedFiles(List<string> afiles, POINT aPos) //µî·ÏµÈ ÄÝ¹é ÇÔ¼ö
+    private void OnDroppedFiles(List<string> afiles, POINT aPos) //ï¿½ï¿½Ïµï¿½ ï¿½Ý¹ï¿½ ï¿½Ô¼ï¿½
     {
         for(int i = 0; i < afiles.Count; i++)
         {
@@ -56,7 +66,7 @@ public class DragAndDrop : MonoBehaviour
             MakeWorldCupImage(fileName);
         }
 
-        onDroppedFiles.Invoke(); //ÀÌº¥Æ® ½ÇÇà
+        onDroppedFiles.Invoke(); //ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     }
 
     public void MakeWorldCupImage(string filename)
@@ -117,7 +127,7 @@ public class DragAndDrop : MonoBehaviour
 
         if (tex == null)
         {
-            Debug.LogWarning($"[IGA] ÀÌ¹ÌÁö ·Îµù ½ÇÆÐ: {resourcePath}");
+            Debug.LogWarning($"[IGA] ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½: {resourcePath}");
         }
 
         return tex;
@@ -125,22 +135,26 @@ public class DragAndDrop : MonoBehaviour
 
     public void SaveWorldCup()
     {
-        Tournament test1 = new Tournament();
-        test1.tournament_id = 0;
-        test1.tournament_title = "1";
-        test1.description = "2";
-        test1.wallet_address = "3";
-        test1.thumbnail = "4";
-        Candidates test2 = new Candidates();
-        test2.name = "5";
-        test2.image_url = "6";
-        test1.candidates.Add(test2);
+        wait.SetActive(true);
+
+        MakeWorldCup test1 = new MakeWorldCup();
+        test1.Tournament_title = titleText.text;
+        test1.Description = "";
+        test1.Wallet_address = DataManager.Instance.walletAddress;
+        test1.Thumbnail = filesDropped[0];
+
+        for(int i = 0; i < filesDropped.Count; i++)
+        {
+            Candidates test2 = new Candidates();
+            test2.Candidate_Name = worldCupDes[i].GetComponent<AddWorldCupImage>().textMesh.text;
+            test2.Image_url = filesDropped[i];
+            test1.Candidates.Add(test2);
+
+        }
 
         string jsontest = JsonUtility.ToJson(test1);
+
         print(jsontest);
-
-
-        Debug.Log(titleText.text);
 
         for(int i = 0; i < worldCupCount; i++)
         {
@@ -151,10 +165,14 @@ public class DragAndDrop : MonoBehaviour
             
         }
 
-        ;
+        string posturl = DataManager.Instance.urlprefix + "/create_tournament";
 
+        StartCoroutine(DataManager.Instance.UploadWorldCup(posturl, jsontest));
 
+        
 
-        SceneManager.LoadScene("Select");
+        
     }
+
+    
 }

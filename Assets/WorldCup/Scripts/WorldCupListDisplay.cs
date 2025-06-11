@@ -15,6 +15,9 @@ public class WorldCupListDisplay : MonoBehaviour
     [SerializeField]
     public List<GameObject> worldList = new List<GameObject>();
 
+    public GameObject wait;
+    public GameObject cw;
+
     [SerializeField]
     int number;
 
@@ -22,6 +25,9 @@ public class WorldCupListDisplay : MonoBehaviour
 
     private void Start()
     {
+        wait.SetActive(false);
+        cw.SetActive(false);
+
         GetWorldTitles();
 
         contentRectTransform.ForceUpdateRectTransforms();
@@ -58,16 +64,21 @@ public class WorldCupListDisplay : MonoBehaviour
 
         Texture2D tex = title.TrumbnailImage;
 
-        float width = tex.width;
-        float height = tex.height;
+        if (tex != null)
+        {
 
-        Rect rect = new Rect(0, 0, width, height);
+            float width = tex.width;
+            float height = tex.height;
 
-        Vector2 pivot = new Vector2(0.5f, 0.5f);
-        Sprite sprite = Sprite.Create(tex, rect, pivot);
+            Rect rect = new Rect(0, 0, width, height);
 
-        instance.GetComponent<WorldCupTitleView>().tumbnail.sprite = sprite;
+            Vector2 pivot = new Vector2(0.5f, 0.5f);
+            Sprite sprite = Sprite.Create(tex, rect, pivot);
+
+            instance.GetComponent<WorldCupTitleView>().tumbnail.sprite = sprite;
+        }
         instance.GetComponent<WorldCupTitleView>().text.text = title.tournaments.tournament_title;
+        instance.GetComponent<GoToWorldCup>().id = title.tournaments.tournament_id;
 
 
         worldList.Add(instance);

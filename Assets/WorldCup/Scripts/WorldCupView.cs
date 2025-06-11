@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WorldCupView : MonoBehaviour
@@ -24,6 +27,7 @@ public class WorldCupView : MonoBehaviour
     public GameObject FinalUI;
     public Image FinalImage;
     public TextMeshProUGUI FinalText;
+    public GameObject wait;
 
     GameObject SelectSizeUI;
 
@@ -36,9 +40,12 @@ public class WorldCupView : MonoBehaviour
 
     private void Start()
     {
+        wait.SetActive(false);
+
         FinalUI.SetActive(false);
 
         DataManager dataManager = DataManager.Instance;
+
 
         WorldCupData worldCupData = dataManager.currentWorldcup;
         worldCupData.Size = WorldCupSize.w16;
@@ -244,10 +251,36 @@ public class WorldCupView : MonoBehaviour
         }
     }
 
-    public void WorldCupEnd()
+    public void VoteSceneChange()
     {
+        string url = DataManager.Instance.voteprefix;
 
+        Vote test1 = new Vote();
+        test1.tournament_id = DataManager.Instance.currentWorldcup.WorldcupID;
+        test1.selected_candidate_id = finalId;
+        test1.wallet_address = DataManager.Instance.walletAddress;
+        string jsonfile = JsonUtility.ToJson(test1);
+
+        wait.SetActive(true);
+
+        StartCoroutine(DataManager.Instance.VoteWorldCup(url, jsonfile));
+        
     }
 
+    public void GoAllVoteSceneChange()
+    {
+        wait.SetActive(true);
 
+        string url = DataManager.Instance.voteprefix;
+
+        Vote test1 = new Vote();
+        test1.tournament_id = DataManager.Instance.currentWorldcup.WorldcupID;
+        test1.selected_candidate_id = finalId;
+        test1.wallet_address = DataManager.Instance.walletAddress;
+        string jsonfile = JsonUtility.ToJson(test1);
+
+        wait.SetActive(true);
+        StartCoroutine(DataManager.Instance.GoVoteWorldCup(url, jsonfile));
+
+    }
 }

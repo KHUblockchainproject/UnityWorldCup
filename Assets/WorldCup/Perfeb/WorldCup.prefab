@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a23ff2c7c28a0734d9344793ae6530a1, type: 2}
+  m_sharedMaterial: {fileID: 1330767280351061033, guid: a23ff2c7c28a0734d9344793ae6530a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -333,7 +333,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6815265161720625181}
         m_TargetAssemblyTypeName: GoToWorldCup, Assembly-CSharp
-        m_MethodName: LetsGoPlayWorldCup
+        m_MethodName: Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -471,6 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15286854b3c823948b7bd39b717c740e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
 --- !u!114 &6639099235031591522
 MonoBehaviour:
   m_ObjectHideFlags: 0
