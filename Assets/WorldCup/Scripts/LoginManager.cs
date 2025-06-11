@@ -45,6 +45,35 @@ public class LoginManager : MonoBehaviour
             else
             {
                 worldcuplist = webRequest.downloadHandler.text;
+                TournametsJson tournametsJson = JsonUtility.FromJson<TournametsJson>(worldcuplist);
+                int size = tournametsJson.tournaments.Count;
+
+                for(int i = 0; i < size; i++)
+                {
+                    WorldCupTitle newtitle = new WorldCupTitle();
+
+                    newtitle.tournaments = tournametsJson.tournaments[i];
+
+                    string imageurl = "";
+
+                    Texture2D myTexture = null;
+
+                    UnityWebRequest www = UnityWebRequestTexture.GetTexture(imageurl);
+                    yield return www.SendWebRequest();
+
+                    if (www.result != UnityWebRequest.Result.Success)
+                    {
+                        Debug.Log(www.error);
+                    }
+                    else
+                    {
+                        myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+                    }
+
+                    newtitle.TrumbnailImage = myTexture;
+                    DataManager.Instance.worldcuplist.Add(newtitle);
+                }
+                
 
             }
         }

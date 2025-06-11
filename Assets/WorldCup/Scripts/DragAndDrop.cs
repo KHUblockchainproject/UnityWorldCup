@@ -125,6 +125,21 @@ public class DragAndDrop : MonoBehaviour
 
     public void SaveWorldCup()
     {
+        Tournament test1 = new Tournament();
+        test1.tournament_id = 0;
+        test1.tournament_title = "1";
+        test1.description = "2";
+        test1.wallet_address = "3";
+        test1.thumbnail = "4";
+        Candidates test2 = new Candidates();
+        test2.name = "5";
+        test2.image_url = "6";
+        test1.candidates.Add(test2);
+
+        string jsontest = JsonUtility.ToJson(test1);
+        print(jsontest);
+
+
         Debug.Log(titleText.text);
 
         for(int i = 0; i < worldCupCount; i++)
@@ -135,6 +150,10 @@ public class DragAndDrop : MonoBehaviour
 
             
         }
+
+        ;
+
+
 
         SceneManager.LoadScene("Select");
     }

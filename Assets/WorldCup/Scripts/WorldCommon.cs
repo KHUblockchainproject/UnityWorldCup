@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -6,6 +8,12 @@ public struct WorldCupTitle
 {
     public Texture2D TrumbnailImage;
     public Tournaments tournaments;
+}
+
+[System.Serializable]
+public class TournametsJson
+{
+    public List<Tournaments> tournaments = new List<Tournaments>();
 }
 
 [System.Serializable]
@@ -20,19 +28,19 @@ public class Tournaments
 [System.Serializable]
 public class Candidates
 {
-    string name;
-    string image_url;
+    public string name;
+    public string image_url;
 }
 
 [System.Serializable]
 public class Tournament
 {
-    int tournament_id;
-    string tournament_title;
-    string description;
-    string wallet_address;
-    string thumbnail;
-    Candidates[] candidates;
+    public int tournament_id;
+    public string tournament_title;
+    public string description;
+    public string wallet_address;
+    public string thumbnail;
+    public List<Candidates> candidates = new List<Candidates>();
 }
 
 [System.Serializable]
