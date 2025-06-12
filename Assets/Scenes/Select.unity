@@ -1250,8 +1250,8 @@ MonoBehaviour:
   currentWorldcupVote: 
   walletAddress: 
   bIsWalletAddress: 0
-  urlprefix: http://127.0.0.1:5000/api/tournaments
-  voteprefix: http://127.0.0.1:5000/api/votes
+  urlprefix: http://127.0.0.1:9001/api/tournaments
+  voteprefix: http://127.0.0.1:9001/api/votes
 --- !u!4 &440739843
 Transform:
   m_ObjectHideFlags: 0

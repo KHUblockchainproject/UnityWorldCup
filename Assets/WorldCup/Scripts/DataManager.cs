@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -131,7 +132,7 @@ public class DataManager : MonoBehaviour
 
     }
 
-    public IEnumerator GetRequestCurrentWorldCup(string url, int id)
+    public IEnumerator GetRequestCurrentWorldCup(string url, int id, bool worl)
     {
         Debug.Log("Check1");
 
@@ -186,8 +187,48 @@ public class DataManager : MonoBehaviour
 
             }
 
+            if (worl == true)
+            {
+                SceneManager.LoadScene("WorldCup");
+            }
+            else
+            {
+                string voteurl = voteprefix + "/vote_query";
 
-            SceneManager.LoadScene("WorldCup");
+                voteid json2 = new voteid();
+                json2.tournament_id = currentWorldcup.WorldcupID;
+                string votejson = JsonUtility.ToJson(json2);
+
+                Debug.Log(votejson);
+
+                using (UnityWebRequest webRequest2 = UnityWebRequest.Post(voteurl, votejson, "application/json"))
+                {
+                    yield return webRequest2.SendWebRequest();
+
+                    if ((webRequest2.result != UnityWebRequest.Result.Success))
+                    {
+                        Debug.LogError(webRequest2.error);
+                    }
+                    else
+                    {
+                        string allvote = webRequest2.downloadHandler.text;
+                        TotalVote tournametsJson2 = JsonUtility.FromJson<TotalVote>(allvote);
+
+                        currentWorldcupVote.Clear();
+
+                        for (int i = 0; i < tournametsJson2.totalVotes.Count; i++)
+                        {
+                            currentWorldcupVote.Add(tournametsJson2.totalVotes[i]);
+                        }
+
+                        SceneManager.LoadScene("WorldCupH");
+                    }
+                }
+
+
+
+            }
+            
         }
 
     }
@@ -231,11 +272,18 @@ public class DataManager : MonoBehaviour
                 Debug.Log(request.downloadHandler.text);
 
                 string voteurl = voteprefix + "/vote_query";
-                using (UnityWebRequest webRequest = UnityWebRequest.Get(voteurl))
+
+                voteid json = new voteid();
+                json.tournament_id = currentWorldcup.WorldcupID;
+                string votejson = JsonUtility.ToJson(json);
+
+                Debug.Log(votejson);
+
+                using (UnityWebRequest webRequest = UnityWebRequest.Post(voteurl, votejson, "application/json"))
                 {
                     yield return webRequest.SendWebRequest();
 
-                    if ((webRequest.result == UnityWebRequest.Result.ConnectionError) || (webRequest.result == UnityWebRequest.Result.ProtocolError))
+                    if ((webRequest.result != UnityWebRequest.Result.Success))
                     {
                         Debug.LogError(webRequest.error);
                     }

@@ -27,7 +27,7 @@ public class DragAndDrop : MonoBehaviour
 
     int worldCupCount = 0;
 
-    GameObject wait;
+    public GameObject wait;
 
     
 

@@ -26,6 +26,12 @@ public class Tournaments
 }
 
 [System.Serializable]
+public class voteid
+{
+    public int tournament_id;
+}
+
+[System.Serializable]
 public class VoteQury
 {
     public string wallet_address;
@@ -77,16 +83,22 @@ public class MakeWorldCup
 [System.Serializable]
 public class Vote
 {
-    public int tournament_id;
-    public string wallet_address;
-    public int selected_candidate_id;
+    public int Tournament_id;
+    public string Wallet_address;
+    public int Candidate_id;
 }
 
 [System.Serializable]
 public class Check_Vote
 {
-    string wallet_address;
-    int tournament_id;
+    public string wallet_address;
+    public int tournament_id;
+}
+
+[System.Serializable]
+public class voterequest
+{
+    public bool isVoted;
 }
 
 [System.Serializable]

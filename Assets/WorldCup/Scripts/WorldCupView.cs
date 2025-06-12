@@ -253,12 +253,12 @@ public class WorldCupView : MonoBehaviour
 
     public void VoteSceneChange()
     {
-        string url = DataManager.Instance.voteprefix;
+        string url = DataManager.Instance.voteprefix + "/vote";
 
         Vote test1 = new Vote();
-        test1.tournament_id = DataManager.Instance.currentWorldcup.WorldcupID;
-        test1.selected_candidate_id = finalId;
-        test1.wallet_address = DataManager.Instance.walletAddress;
+        test1.Tournament_id = DataManager.Instance.currentWorldcup.WorldcupID;
+        test1.Candidate_id = finalId;
+        test1.Wallet_address = DataManager.Instance.walletAddress;
         string jsonfile = JsonUtility.ToJson(test1);
 
         wait.SetActive(true);
@@ -271,12 +271,12 @@ public class WorldCupView : MonoBehaviour
     {
         wait.SetActive(true);
 
-        string url = DataManager.Instance.voteprefix;
+        string url = DataManager.Instance.voteprefix + "/vote";
 
         Vote test1 = new Vote();
-        test1.tournament_id = DataManager.Instance.currentWorldcup.WorldcupID;
-        test1.selected_candidate_id = finalId;
-        test1.wallet_address = DataManager.Instance.walletAddress;
+        test1.Tournament_id = DataManager.Instance.currentWorldcup.WorldcupID;
+        test1.Candidate_id = finalId;
+        test1.Wallet_address = DataManager.Instance.walletAddress;
         string jsonfile = JsonUtility.ToJson(test1);
 
         wait.SetActive(true);

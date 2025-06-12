@@ -193,6 +193,7 @@ MonoBehaviour:
   titleText: {fileID: 1911352332}
   contentRectTransform: {fileID: 68685179}
   layoutRectTransform: {fileID: 1215410989}
+  wait: {fileID: 1607421120}
 --- !u!4 &88384072
 Transform:
   m_ObjectHideFlags: 0

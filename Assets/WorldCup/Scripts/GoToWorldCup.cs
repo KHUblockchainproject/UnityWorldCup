@@ -11,7 +11,7 @@ public class GoToWorldCup : MonoBehaviour
     GameObject wait;
     GameObject cw;
 
-    public void LetsGoPlayWorldCup()
+    public void LetsGoPlayWorldCup(bool worl)
     {
         // currentWorldcup 에 데이터 넣어주기
 
@@ -21,9 +21,21 @@ public class GoToWorldCup : MonoBehaviour
 
         string prefix = DataManager.Instance.urlprefix;
         string url = prefix + "/"+id;
-        StartCoroutine(DataManager.Instance.GetRequestCurrentWorldCup(url, id));
+        StartCoroutine(DataManager.Instance.GetRequestCurrentWorldCup(url, id,worl));
 
         
+    }
+
+    public void ClickGotoVote()
+    {
+        wait = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+
+        if (wait != null)
+        {
+            wait.SetActive(true);
+        }
+
+        LetsGoPlayWorldCup(false);
     }
 
     public void Click()
@@ -46,12 +58,14 @@ public class GoToWorldCup : MonoBehaviour
             wait.SetActive(true);
         }
 
-        VoteQury votequry = new VoteQury();
+        Check_Vote votequry = new Check_Vote();
+
         votequry.wallet_address = DataManager.Instance.walletAddress;
         votequry.tournament_id = id;
 
         string json = JsonUtility.ToJson(votequry);
-        string qurryurl = DataManager.Instance.voteprefix + "/vote_query";
+        print(json);
+        string qurryurl = DataManager.Instance.voteprefix + "/check_voted";
 
 
         using (UnityWebRequest request = UnityWebRequest.Post(qurryurl, json, "application/json"))
@@ -71,7 +85,13 @@ public class GoToWorldCup : MonoBehaviour
             {
                 string check = request.downloadHandler.text;
 
-                if(check == "true" || check == "1")
+                voterequest vr = JsonUtility.FromJson<voterequest>(check);
+
+                Debug.Log("request check");
+                Debug.Log(check);
+                Debug.Log("----------");
+
+                if (vr.isVoted)
                 {
                     if (wait != null)
                     {
@@ -83,7 +103,7 @@ public class GoToWorldCup : MonoBehaviour
                 }
                 else
                 {
-                    LetsGoPlayWorldCup();
+                    LetsGoPlayWorldCup(true);
                 }
             }
         }

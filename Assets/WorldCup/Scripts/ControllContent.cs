@@ -45,6 +45,7 @@ public class ControllContent : MonoBehaviour
                 worldcupdata.worldcupimage.sprite = sprite;
             }
 
+
             worldcupdata.text.text = currentWorldCup.Describe[i];
             worldcupdata.vote.text = dataManager.currentWorldcupVote[i].ToString();
 
