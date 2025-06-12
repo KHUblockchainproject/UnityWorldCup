@@ -101,7 +101,7 @@ public class WorldCupView : MonoBehaviour
 
         // True == Left False == Right
 
-        if (size == 1)
+        if (size == 2)
         {
             Debug.Log("Final");
 
