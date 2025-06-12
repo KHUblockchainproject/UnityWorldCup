@@ -30,7 +30,7 @@ public class DataManager : MonoBehaviour
             {
                 GameObject obj = new GameObject("DataManager");
                 instance = obj.AddComponent<DataManager>();
-                
+
             }
             return instance;
         }
@@ -113,7 +113,7 @@ public class DataManager : MonoBehaviour
         {
             yield return request.SendWebRequest();
 
-            
+
 
             if (request.result != UnityWebRequest.Result.Success)
             {
@@ -186,7 +186,7 @@ public class DataManager : MonoBehaviour
 
             }
 
-            
+
             SceneManager.LoadScene("WorldCup");
         }
 
@@ -261,7 +261,7 @@ public class DataManager : MonoBehaviour
 
     }
 
-    
+
 
     public IEnumerator GoVoteWorldCupTest(string url, string jsonfile)
     {
@@ -292,7 +292,9 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    
-
-
+    public void ChangeURL(string http)
+    {
+        urlprefix = http + "/api/tournaments";
+        voteprefix = http + "/api/votes";
+    }
 }

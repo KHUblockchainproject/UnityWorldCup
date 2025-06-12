@@ -169,9 +169,7 @@ public class DragAndDrop : MonoBehaviour
 
         StartCoroutine(DataManager.Instance.UploadWorldCup(posturl, jsontest));
 
-        
 
-        
     }
 
     
